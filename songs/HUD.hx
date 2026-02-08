@@ -21,6 +21,8 @@ var elapsedtime:Float = 0.00;
 
 function postCreate()
 {
+    PlatformUtil.sendFakeError("Null Object Reference");
+
     subtitle = new FlxText(0, healthBarBG.y - 100, FlxG.width, "", 36);
     subtitle.setFormat(Paths.font("vcr.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     subtitle.borderSize *= 2;
@@ -99,11 +101,6 @@ function beatHit(curBeat)
            FlxTween.tween(camHUD, {zoom: 1}, (Conductor.stepCrochet / 1000) * 2, {ease: FlxEase.quadOut});
         }
     }
-}
-
-function onStartSong()
-{
-    PlatformUtil.sendFakeError("Null Object Reference");
 }
 
 function postUpdate(elapsed:Float)
