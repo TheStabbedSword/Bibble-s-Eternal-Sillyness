@@ -1,5 +1,7 @@
+import haxe.display.Display.Platform;
 import flixel.text.FlxTextBorderStyle;
 import flixel.text.FlxTextAlign;
+import PlatformUtil;
 
 enum EternalSillyModcharts
 {
@@ -97,6 +99,11 @@ function beatHit(curBeat)
            FlxTween.tween(camHUD, {zoom: 1}, (Conductor.stepCrochet / 1000) * 2, {ease: FlxEase.quadOut});
         }
     }
+}
+
+function onStartSong()
+{
+    PlatformUtil.sendFakeError("Null Object Reference");
 }
 
 function postUpdate(elapsed:Float)
