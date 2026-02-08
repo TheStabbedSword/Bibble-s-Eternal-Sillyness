@@ -8,9 +8,14 @@ function onDiscordPresenceUpdate(e) {
 	var data = e.presence;
 
 	if(data.button1Label == null)
-		data.button1Label = "SOMEBODY LEAK THIS"; // "Codename Engine Discord"
+		data.button1Label = "Press this button for eternal sillyness"; // "troll"
 	if(data.button1Url == null)
 		data.button1Url = "https://cornhub.website";
+
+	if(data.button2Label == null)
+		data.button2Label = "Codename Engine Discord"; // "Codename Engine Discord"
+	if(data.button2Url == null)
+		data.button2Url = "https://discord.gg/42DPQxjhgM";
 }
 
 function onPlayStateUpdate() {

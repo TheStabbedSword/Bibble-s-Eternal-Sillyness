@@ -14,21 +14,31 @@ var eternalModchart:EternalSillyModcharts = EternalSillyModcharts.None;
 // modchart part!!
 
 var subtitle:FlxText;
+var songNameTxt:FlxText;
 var bobbingIt:Bool = false;
 
 var elapsedtime:Float = 0.00;
 
 function postCreate()
 {
+    PlatformUtil.sendNotification("WARNING", "Bibble on your computer ddblud!");
+
     subtitle = new FlxText(0, healthBarBG.y - 100, FlxG.width, "", 36);
-    subtitle.setFormat(Paths.font("vcr.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+    subtitle.setFormat(Paths.font("bibblesaveragehandwriting.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     subtitle.borderSize *= 2;
     subtitle.screenCenter(FlxAxes.X);
     add(subtitle);
 
-    for (i in [subtitle])
+    songNameTxt = new FlxText(4, 0, FlxG.width, "", 16);
+    songNameTxt.setFormat(Paths.font("bibblesaveragehandwriting.ttf"), 16, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+    songNameTxt.text = PlayState.SONG.meta.displayName;
+    add(songNameTxt);
+    songNameTxt.y = (FlxG.height - songNameTxt.height);
+
+    for (i in [subtitle, songNameTxt, scoreTxt, accuracyTxt, missesTxt])
     {
         i.cameras = [camHUD];
+        i.font = Paths.font("bibblesaveragehandwriting.ttf");
     }
 }
 
@@ -45,7 +55,6 @@ function stepHit(curStep)
                 case 124:
                     subtitle.text = "ON";
                 case 128:
-                    PlatformUtil.sendNotification("WARNING", "bibble sent 4tb of furry porn on your windows");
                     subtitle.text = "";
                     subtitle.color = 0xFFFFFFFF;
                 case 1344:
