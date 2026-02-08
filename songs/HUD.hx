@@ -23,6 +23,9 @@ var elapsedtime:Float = 0.00;
 
 function postCreate()
 {
+    camZooming = true;
+    centerCamera();
+
     subtitle = new FlxText(0, healthBarBG.y - 100, FlxG.width, "", 36);
     subtitle.setFormat(Paths.font("bibblesaveragehandwriting.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     subtitle.borderSize *= 2;
@@ -52,13 +55,18 @@ function stepHit(curStep)
                 case 120:
                     subtitle.color = 0xFFFF0000;
                     subtitle.text = "ITS";
+                    defaultCamZoom += 0.3;
                 case 124:
                     subtitle.text = "ON";
                 case 128:
                     subtitle.text = "";
                     subtitle.color = 0xFFFFFFFF;
+                    defaultCamZoom -= 0.3;
+                case 1152:
+                    centerCamera();
                 case 1344:
                     subtitle.text = "Honestly...";
+                    defaultCamZoom += 0.4;
                 case 1358:
                     subtitle.text = "DID";
                 case 1361:
@@ -81,6 +89,7 @@ function stepHit(curStep)
                     subtitle.color = 0xFFFFFFFF;
                 case 1408:
                     eternalModchart = EternalSillyModcharts.Beanie;
+                    defaultCamZoom -= 0.4;
                 case 1912:
                     for (i in [camHUD, camGame])
                     {
@@ -148,4 +157,10 @@ function postUpdate(elapsed:Float)
     }
 
     glitchShader.time = elapsedtime;
+}
+
+public function centerCamera()
+{
+    curCameraTarget = -1;
+    camFollow.setPosition(FlxMath.lerp(dad.getCameraPosition().x, bf.getCameraPosition().x, 0.5), FlxMath.lerp(dad.getCameraPosition().y, bf.getCameraPosition().y, 0.5));
 }
