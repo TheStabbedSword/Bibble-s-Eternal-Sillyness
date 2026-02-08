@@ -17,12 +17,12 @@ var subtitle:FlxText;
 var songNameTxt:FlxText;
 var bobbingIt:Bool = false;
 
+var glitchShader:CustomShader = new CustomShader("GlitchEffect");
+
 var elapsedtime:Float = 0.00;
 
 function postCreate()
 {
-    PlatformUtil.sendNotification("WARNING", "Bibble on your computer ddblud!");
-
     subtitle = new FlxText(0, healthBarBG.y - 100, FlxG.width, "", 36);
     subtitle.setFormat(Paths.font("bibblesaveragehandwriting.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     subtitle.borderSize *= 2;
@@ -81,6 +81,21 @@ function stepHit(curStep)
                     subtitle.color = 0xFFFFFFFF;
                 case 1408:
                     eternalModchart = EternalSillyModcharts.Beanie;
+                case 1912:
+                    for (i in [camHUD, camGame])
+                    {
+                        i.addShader(glitchShader);
+                    }
+                    defaultCamZoom += 0.4;
+                case 1916:
+                    camGame.shake(0.01, (Conductor.stepCrochet / 1000) * 4);
+                    defaultCamZoom += 0.1;
+                case 1920:
+                    for (i in [camHUD, camGame])
+                    {
+                        i.removeShader(glitchShader);
+                    }
+                    defaultCamZoom -= 0.5;
             }
     }
 }
@@ -131,4 +146,6 @@ function postUpdate(elapsed:Float)
 
             camHUD.y -= Math.sin(elapsedtime * 2) * 0.15;
     }
+
+    glitchShader.time = elapsedtime;
 }
