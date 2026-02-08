@@ -1,4 +1,3 @@
-import haxe.display.Display.Platform;
 import flixel.text.FlxTextBorderStyle;
 import flixel.text.FlxTextAlign;
 import PlatformUtil;
@@ -21,8 +20,6 @@ var elapsedtime:Float = 0.00;
 
 function postCreate()
 {
-    PlatformUtil.sendFakeError("Null Object Reference");
-
     subtitle = new FlxText(0, healthBarBG.y - 100, FlxG.width, "", 36);
     subtitle.setFormat(Paths.font("vcr.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     subtitle.borderSize *= 2;
@@ -48,6 +45,7 @@ function stepHit(curStep)
                 case 124:
                     subtitle.text = "ON";
                 case 128:
+                    PlatformUtil.sendNotification("WARNING", "bibble sent 4tb of furry porn on your windows");
                     subtitle.text = "";
                     subtitle.color = 0xFFFFFFFF;
                 case 1344:
