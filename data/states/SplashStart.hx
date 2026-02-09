@@ -7,7 +7,7 @@ function postCreate(){
     
     add(logo = new FlxSprite(FlxG.width/2-50,FlxG.height/2-70).makeGraphic(100,100,0xFF000000));
     add(other = new FlxSprite(FlxG.width/2-50,FlxG.height/2-70).loadGraphic(Paths.image("game/splash/chud_productions_logo")));
-    other.setGraphicSize(Std.int(other.width * 0.25));
+    other.setGraphicSize(Std.int(other.width * 0.35));
     other.updateHitbox();
     other.screenCenter();
     other.visible = false;
@@ -19,7 +19,7 @@ function postCreate(){
 
     be = FlxG.sound.load(Paths.sound("splashIntro"));
     be.play();
-    FlxTween.tween(other,{alpha: 0},8,{ease: FlxEase.quadOut,startDelay : 2.87});
+    FlxTween.tween(other,{alpha: 0, 'scale.x': 0.15, 'scale.y': 0.15},8,{ease: FlxEase.quadOut,startDelay : 2.87});
     FlxTween.tween(haxeTxt,{alpha: 0},8,{ease: FlxEase.quadOut,startDelay : 2.87,onComplete: End});
 
     new FlxTimer().start(1.75, function () {
@@ -27,6 +27,9 @@ function postCreate(){
         logo.visible = false;
         other.visible = true;
         haxeTxt.visible = false;
+
+        FlxTween.tween(other.scale, {x:0.25, y: 0.25}, 1.25, {ease: FlxEase.quadOut});
+        FlxTween.tween(other, {angle: 360}, 1.25, {ease: FlxEase.backOut});
     });
 }
 
