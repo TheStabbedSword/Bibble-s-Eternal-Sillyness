@@ -18,6 +18,7 @@ var songNameTxt:FlxText;
 var bobbingIt:Bool = false;
 
 var glitchShader:CustomShader = new CustomShader("GlitchEffect");
+var colorCorrection:CustomShader = new CustomShader("ColorCorrection");
 
 var elapsedtime:Float = 0.00;
 
@@ -25,6 +26,11 @@ function postCreate()
 {
     camZooming = true;
     centerCamera();
+
+    camGame.addShader(colorCorrection);
+    colorCorrection.contrast = 30;
+    colorCorrection.hue = -10;
+    colorCorrection.saturation = -10;
 
     subtitle = new FlxText(0, healthBarBG.y - 100, FlxG.width, "", 36);
     subtitle.setFormat(Paths.font("bibblesaveragehandwriting.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -62,6 +68,8 @@ function stepHit(curStep)
                     subtitle.text = "";
                     subtitle.color = 0xFFFFFFFF;
                     defaultCamZoom -= 0.3;
+                case 832:
+                    centerCamera();
                 case 1152:
                     centerCamera();
                 case 1344:
@@ -157,6 +165,21 @@ function postUpdate(elapsed:Float)
     }
 
     glitchShader.time = elapsedtime;
+}
+
+function onDadHit(event)
+{
+    if (!event.note.isSustainNote)
+    {
+        camGame.shake(0.009, 0.05);
+
+        if (health > 0.1)
+        {
+            health -= 0.02;
+        }
+    } else {
+        camGame.shake(0.005, 0.05);
+    }
 }
 
 public function centerCamera()
