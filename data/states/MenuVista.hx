@@ -1,3 +1,6 @@
+import funkin.editors.EditorPicker;
+import funkin.menus.ModSwitchMenu;
+
 var bg:FlxSprite = new FlxSprite(0, 0);
 var taskbar:FlxSprite = new FlxSprite(0, 0);
 
@@ -22,4 +25,14 @@ function create()
 function update(elapsed:Float)
 {
     FlxG.camera.scroll.set(FlxG.mouse.screenX * 0.15, FlxG.mouse.screenY * 0.15);
+
+    #if MOD_SUPPORT
+	if (controls.SWITCHMOD) {
+		openSubState(new ModSwitchMenu());
+	}
+	#end
+
+    if (controls.DEV_ACCESS) {
+		openSubState(new EditorPicker());
+	}
 }
