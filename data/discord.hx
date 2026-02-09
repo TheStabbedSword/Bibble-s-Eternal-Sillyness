@@ -8,7 +8,7 @@ function onDiscordPresenceUpdate(e) {
 	var data = e.presence;
 
 	if(data.button1Label == null)
-		data.button1Label = "Press this button for eternal sillyness"; // "troll"
+		data.button1Label = "Press this for eternal sillyness"; // "troll"
 	if(data.button1Url == null)
 		data.button1Url = "https://cornhub.website";
 

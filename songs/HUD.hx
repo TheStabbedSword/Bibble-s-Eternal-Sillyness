@@ -16,11 +16,15 @@ var eternalModchart:EternalSillyModcharts = EternalSillyModcharts.None;
 var subtitle:FlxText;
 var songNameTxt:FlxText;
 var bobbingIt:Bool = false;
+var mad:Bool = true;
 
 var glitchShader:CustomShader = new CustomShader("GlitchEffect");
 var colorCorrection:CustomShader = new CustomShader("ColorCorrection");
 
 var elapsedtime:Float = 0.00;
+
+var fuckingblackshitcuzcamerasucksatflashing = new FlxSprite(0, 0);
+var goofyahhwhitebackgroundig = new FlxSprite(0, 0);
 
 function postCreate()
 {
@@ -97,6 +101,7 @@ function stepHit(curStep)
                     subtitle.color = 0xFFFFFFFF;
                 case 1408:
                     eternalModchart = EternalSillyModcharts.Beanie;
+                    changeShit(true);
                     defaultCamZoom -= 0.4;
                 case 1912:
                     for (i in [camHUD, camGame])
@@ -113,6 +118,37 @@ function stepHit(curStep)
                         i.removeShader(glitchShader);
                     }
                     defaultCamZoom -= 0.5;
+                case 2160:
+                    add(fuckingblackshitcuzcamerasucksatflashing).makeGraphic(FlxG.width * 4, FlxG.height * 4, 0xFFFFFFFF);
+                    fuckingblackshitcuzcamerasucksatflashing.alpha = 0;
+                    fuckingblackshitcuzcamerasucksatflashing.camera = camGame;
+                    fuckingblackshitcuzcamerasucksatflashing.screenCenter(FlxAxes.XY);
+
+                    FlxTween.tween(fuckingblackshitcuzcamerasucksatflashing, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
+                case 2176:
+                    eternalModchart = EternalSillyModcharts.None;
+                    changeShit(false);
+
+                    goofyahhwhitebackgroundig.makeGraphic(FlxG.width * 4, FlxG.height * 4, 0xFFFFFFFF);
+                    var shit = members.indexOf(dad);
+                    insert(shit > -1 ? shit : members.indexOf(dad), goofyahhwhitebackgroundig);
+                    goofyahhwhitebackgroundig.screenCenter(FlxAxes.XY);
+
+                    FlxTween.tween(fuckingblackshitcuzcamerasucksatflashing, {alpha: 0}, (Conductor.stepCrochet / 1000) * 64);
+                    bobbingIt = false;
+
+                    dad.color = 0xff000000;
+                    bf.color = 0xff000000;
+                case 2520:
+                    goofyahhwhitebackgroundig.destroy();
+
+                    dad.color = 0xffffffff;
+                    bf.color = 0xffffffff;
+                case 2528:
+                    mad = true;
+                    eternalModchart = EternalSillyModcharts.Jersey;
+
+                    camGame.flash(0xFFFFFFFF);
             }
     }
 }
@@ -126,6 +162,8 @@ function beatHit(curBeat)
                 {
                     case 32:
                         bobbingIt = true;
+                    case 552:
+                        mad = false;
                 }
     }
 
@@ -162,6 +200,12 @@ function postUpdate(elapsed:Float)
             });
 
             camHUD.y -= Math.sin(elapsedtime * 2) * 0.15;
+        case EternalSillyModcharts.None:
+            camHUD.y = 0;
+        case EternalSillyModcharts.Jersey:
+            camHUD.y -= Math.sin(elapsedtime * 2) * 0.15;
+            camHUD.x += Math.cos(elapsedtime * 2) * 0.15;
+            camHUD.angle = Math.sin(elapsedtime * 16) * 0.15;
     }
 
     glitchShader.time = elapsedtime;
@@ -169,16 +213,19 @@ function postUpdate(elapsed:Float)
 
 function onDadHit(event)
 {
-    if (!event.note.isSustainNote)
+    if (mad)
     {
-        camGame.shake(0.009, 0.05);
-
-        if (health > 0.1)
+        if (!event.note.isSustainNote)
         {
-            health -= 0.02;
+            camGame.shake(0.009, 0.05);
+
+            if (health > 0.1)
+            {
+                health -= 0.02;
+            }
+        } else {
+            camGame.shake(0.005, 0.05);
         }
-    } else {
-        camGame.shake(0.005, 0.05);
     }
 }
 
@@ -186,4 +233,20 @@ public function centerCamera()
 {
     curCameraTarget = -1;
     camFollow.setPosition(FlxMath.lerp(dad.getCameraPosition().x, bf.getCameraPosition().x, 0.5), FlxMath.lerp(dad.getCameraPosition().y, bf.getCameraPosition().y, 0.5));
+}
+
+public function changeShit(yes)
+{
+    if (yes)
+    {
+        FlxTween.num(0,  -50, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.brightness = val);
+        FlxTween.num(-10,  -10, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.hue = val);
+        FlxTween.num(-10,  50, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.saturation = val);
+        FlxTween.num(30,  100, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.contrast = val);
+    } else {
+        FlxTween.num(-50,  0, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.brightness = val);
+        FlxTween.num(-10,  -10, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.hue = val);
+        FlxTween.num(50,  -10, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.saturation = val);
+        FlxTween.num(100,  30, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut}, val -> colorCorrection.contrast = val);
+    }
 }
