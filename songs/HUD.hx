@@ -28,13 +28,19 @@ var goofyahhwhitebackgroundig = new FlxSprite(0, 0);
 
 function postCreate()
 {
-    camZooming = true;
-    centerCamera();
+    switch (PlayState.SONG.meta.name.toLowerCase())
+    {
+        case "eternal-sillyness":
+            camZooming = true;
+            centerCamera();
 
-    camGame.addShader(colorCorrection);
-    colorCorrection.contrast = 30;
-    colorCorrection.hue = -10;
-    colorCorrection.saturation = -10;
+            camGame.addShader(colorCorrection);
+            colorCorrection.contrast = 30;
+            colorCorrection.hue = -10;
+            colorCorrection.saturation = -10;
+        default:
+            camZooming = true;
+    }
 
     subtitle = new FlxText(0, healthBarBG.y - 100, FlxG.width, "", 36);
     subtitle.setFormat(Paths.font("bibblesaveragehandwriting.ttf"), 50, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -149,6 +155,12 @@ function stepHit(curStep)
                     eternalModchart = EternalSillyModcharts.Jersey;
 
                     camGame.flash(0xFFFFFFFF);
+            }
+        case "step":
+            if (curStep % 8 == 0)
+            {
+                camHUD.y = 10;
+                FlxTween.tween(camHUD, {y: 0}, (Conductor.stepCrochet / 1000) * 4, {ease: FlxEase.quadOut});
             }
     }
 }

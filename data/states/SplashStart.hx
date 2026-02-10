@@ -4,6 +4,11 @@ import flixel.system.FlxAssets;
 
 function postCreate(){
     haxeTxt = new FlxText(0,FlxG.height/2+60,FlxG.width,'Made with HaxeFlixel',16);
+
+    var targetX = (FlxG.save.data.windowResolutionX - FlxG.save.data.windowResolutionX) / 2;
+    var targetY = (FlxG.save.data.windowResolutionY - FlxG.save.data.windowResolutionY) / 2;
+
+    FlxTween.tween(window, {opacity: 1}, 0.25, {ease: FlxEase.quadOut});
     
     add(logo = new FlxSprite(FlxG.width/2-50,FlxG.height/2-70).makeGraphic(100,100,0xFF000000));
     add(other = new FlxSprite(FlxG.width/2-50,FlxG.height/2-70).loadGraphic(Paths.image("game/splash/chud_productions_logo")));
@@ -21,6 +26,7 @@ function postCreate(){
     be.play();
     FlxTween.tween(other,{alpha: 0, 'scale.x': 0.15, 'scale.y': 0.15},8,{ease: FlxEase.quadOut,startDelay : 2.87});
     FlxTween.tween(haxeTxt,{alpha: 0},8,{ease: FlxEase.quadOut,startDelay : 2.87,onComplete: End});
+    FlxTween.tween(window, {width: FlxG.save.data.windowResolutionX, height: FlxG.save.data.windowResolutionY, x: targetX, y: targetY}, 1.25, {ease: FlxEase.backIn, startDelay: 6});
 
     new FlxTimer().start(1.75, function () {
         FlxG.cameras.flash(0xFFFFFFFF);
