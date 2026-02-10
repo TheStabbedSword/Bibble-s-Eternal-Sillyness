@@ -5,6 +5,7 @@ function new()
 {
     FlxG.save.data.windowResolutionX = Capabilities.screenResolutionX;
     FlxG.save.data.windowResolutionY = Capabilities.screenResolutionY;
+    FlxG.save.data.alreadyOpenedOS = false;
 
     window.opacity = 0;
     window.fullscreen = false;
