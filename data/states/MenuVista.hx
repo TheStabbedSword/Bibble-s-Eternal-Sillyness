@@ -3,6 +3,8 @@ import funkin.menus.ModSwitchMenu;
 import flixel.text.FlxTextBorderStyle;
 import flixel.text.FlxTextAlign;
 import PlatformUtil;
+import Date;
+import funkin.options.OptionsMenu;
 
 var bootupCamera:FlxCamera = new FlxCamera();
 var menuCamera:FlxCamera = new FlxCamera();
@@ -12,21 +14,17 @@ var taskbar:FlxSprite = new FlxSprite(0, 0);
 
 var menuItems:FlxGroup = new FlxGroup();
 var options:Array<String> = [
-    {name: "Options", icon: "folder"},
+    {name: "Options", icon: "settings"},
     {name: "goon stash", icon: "folder"},
     {name: "Bibble Explorer", icon: "browser"},
 ];
 
-var goonstashFolder:FlxSprite = new FlxSprite(0, 0);
-var optionsFolder:FlxSprite = new FlxSprite(0, 0);
-
 var browserThing:FlxSprite = new FlxSprite(0, 0);
 var browserCloseHitbox:FlxSprite = new FlxSprite(0, 0);
 
+var timeTxt:FlxText;
+
 var lastClickTime:Float = 0;
-var dragging:FlxSprite = null;
-var dragOffsetX:Float = 0;
-var dragOffsetY:Float = 0;
 
 function create()
 {
@@ -86,7 +84,7 @@ function create()
     bg.screenCenter();
     bg.scrollFactor.set(0.15, 0.15);
 
-    add(taskbar).makeGraphic(FlxG.width, 50, 0xFFD3FFD3);
+    add(taskbar).makeGraphic(FlxG.width, 35, 0xFFD3FFD3);
     taskbar.alpha = 0.5;
     taskbar.screenCenter(FlxAxes.X);
     taskbar.y = FlxG.height - taskbar.height;
@@ -128,16 +126,6 @@ function create()
         menuItems.add(spritey);
     }  
 
-    add(goonstashFolder).loadGraphic(Paths.image("game/mainmenu/browserShit"));
-    goonstashFolder.scrollFactor.set();
-    goonstashFolder.screenCenter();
-    goonstashFolder.visible = false;
-
-    add(optionsFolder).loadGraphic(Paths.image("game/mainmenu/browserShit"));
-    optionsFolder.scrollFactor.set();
-    optionsFolder.screenCenter();
-    optionsFolder.visible = false;
-
     add(browserThing).loadGraphic(Paths.image("game/mainmenu/browserPage"));
     browserThing.scrollFactor.set();
     browserThing.visible = false;
@@ -151,11 +139,20 @@ function create()
     browserCloseHitbox.visible = false;
     browserCloseHitbox.scrollFactor.set();
 
-    for (i in [goonstashFolder, optionsFolder, taskbar, bg, browserThing])
+    timeTxt = new FlxText(-5, FlxG.height - 32.5, taskbar.width, "time you dumbass", 16);
+    timeTxt.setFormat("Arial", 12, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+    timeTxt.borderSize = 0.2;
+    timeTxt.antialiasing = true;
+    timeTxt.scrollFactor.set();
+    add(timeTxt);
+
+    for (i in [taskbar, bg, browserThing, timeTxt])
     {
         i.antialiasing = true;
         i.camera = menuCamera;
     }
+
+    trace(getYearString());
 }
 
 function update(elapsed:Float)
@@ -190,39 +187,12 @@ function update(elapsed:Float)
             {
                 switch (icon.ID)
                 {
-                    case 0: toggleFolder(optionsFolder, goonstashFolder);
-                    case 1: toggleFolder(goonstashFolder, optionsFolder);
+                    case 0: FlxG.switchState(new OptionsMenu());
+                    case 1: FlxG.switchState(new ModState("Gallery"));
                     case 2: openUpBrowser();
                 }
             }
             lastClickTime = now;
-        }
-    }
-
-    for (win in [goonstashFolder, optionsFolder])
-    {
-        if (!win.visible) continue;
-
-        var over = FlxG.mouse.overlaps(win);
-
-        if (over && FlxG.mouse.justPressed)
-        {
-            dragging = win;
-            dragOffsetX = FlxG.mouse.screenX - win.x;
-            dragOffsetY = FlxG.mouse.screenY - win.y;
-        }
-    }
-
-    if (dragging != null)
-    {
-        if (FlxG.mouse.pressed)
-        {
-            dragging.x = FlxG.mouse.screenX - dragOffsetX;
-            dragging.y = FlxG.mouse.screenY - dragOffsetY;
-        }
-        else
-        {
-            dragging = null;
         }
     }
 
@@ -236,25 +206,24 @@ function update(elapsed:Float)
             }
         }
     }
-}
 
-
-function toggleFolder(open:FlxSprite, close:FlxSprite)
-{
-    FlxTween.cancelTweensOf(open);
-    close.visible = false;
-
-    open.visible = !open.visible;
-    open.scale.set(0.7, 0.7);
-    open.updateHitbox();
-
-    FlxTween.tween(open.scale, {x: 1, y: 1}, 0.25, {ease: FlxEase.quadOut});
-
-    FlxG.sound.play(Paths.sound("mainmenu/click"));
+    timeTxt.text = getTimeString() + "\n" + getYearString();
 }
 
 function openUpBrowser()
 {
     browserThing.visible = !browserThing.visible;
     browserCloseHitbox.visible = browserThing.visible;
+}
+
+function getTimeString():String
+{
+    var d = Date.now();
+    return d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+}
+
+function getYearString():String
+{
+    var d = Date.now();
+    return d.getMonth() + "/" + d.getDay() + "/" + d.getFullYear();
 }
