@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="bibble wip.png">
+<SubTexture name="bibble wip idle0000" x="0" y="0" width="214" height="313" frameX="-68" frameY="-9" frameWidth="640" frameHeight="480" />
+<SubTexture name="bibble wip idle0001" x="214" y="0" width="213" height="313" frameX="-68" frameY="-10" frameWidth="640" frameHeight="480" />
+</TextureAtlas>

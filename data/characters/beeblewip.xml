@@ -1,0 +1,4 @@
+<!DOCTYPE codename-engine-character>
+<character sprite="bibble wip" scale="1.5" antialiasing="false" camx="-100" camy="250" icon="beeblewip">
+	<anim name="idle" anim="bibble wip idle" x="-107.33" y="-201.33" fps="2" loop="true"/>
+</character>
