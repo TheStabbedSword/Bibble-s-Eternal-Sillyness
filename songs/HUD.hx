@@ -225,19 +225,23 @@ function postUpdate(elapsed:Float)
 
 function onDadHit(event)
 {
-    if (mad)
+    if (SONG.meta.name.toLowerCase())
     {
-        if (!event.note.isSustainNote)
-        {
-            camGame.shake(0.009, 0.05);
-
-            if (health > 0.1)
+        case "eternal-sillyness":
+            if (mad)
             {
-                health -= 0.02;
+                if (!event.note.isSustainNote)
+                {
+                    camGame.shake(0.009, 0.05);
+
+                    if (health > 0.1)
+                    {
+                        health -= 0.02;
+                    }
+                } else {
+                    camGame.shake(0.005, 0.05);
+                }
             }
-        } else {
-            camGame.shake(0.005, 0.05);
-        }
     }
 }
 
