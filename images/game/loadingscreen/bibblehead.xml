@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="bibblehead.png">
+<SubTexture name="bibblehead mewhenispin0000" x="0" y="430" width="582" height="429" frameX="-108" frameY="-203" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0001" x="1159" y="0" width="578" height="428" frameX="-84" frameY="-205" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0002" x="0" y="1286" width="553" height="425" frameX="-72" frameY="-207" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0003" x="0" y="1711" width="546" height="421" frameX="-89" frameY="-209" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0004" x="957" y="1711" width="499" height="416" frameX="-131" frameY="-211" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0005" x="0" y="2132" width="439" height="412" frameX="-182" frameY="-213" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0006" x="879" y="2132" width="441" height="409" frameX="-194" frameY="-214" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0007" x="2720" y="0" width="434" height="405" frameX="-207" frameY="-216" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0008" x="2295" y="2544" width="531" height="402" frameX="-181" frameY="-218" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0009" x="3154" y="0" width="612" height="401" frameX="-142" frameY="-219" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0010" x="0" y="2949" width="645" height="401" frameX="-121" frameY="-221" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0011" x="530" y="2544" width="617" height="403" frameX="-131" frameY="-222" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0012" x="0" y="2544" width="530" height="405" frameX="-173" frameY="-223" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0013" x="2282" y="1650" width="435" height="408" frameX="-217" frameY="-223" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0014" x="2282" y="828" width="429" height="412" frameX="-211" frameY="-223" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0015" x="1456" y="1711" width="412" height="416" frameX="-218" frameY="-224" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0016" x="1737" y="844" width="443" height="419" frameX="-204" frameY="-226" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0017" x="1046" y="1286" width="497" height="423" frameX="-193" frameY="-227" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0018" x="1081" y="859" width="532" height="426" frameX="-184" frameY="-229" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0019" x="582" y="430" width="571" height="429" frameX="-142" frameY="-230" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0020" x="0" y="0" width="582" height="430" frameX="-108" frameY="-231" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0021" x="582" y="0" width="577" height="430" frameX="-85" frameY="-232" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0022" x="0" y="859" width="552" height="427" frameX="-73" frameY="-234" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0023" x="1737" y="0" width="545" height="423" frameX="-89" frameY="-235" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0024" x="1737" y="1263" width="498" height="419" frameX="-131" frameY="-235" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0025" x="2282" y="0" width="438" height="414" frameX="-183" frameY="-235" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0026" x="439" y="2132" width="440" height="410" frameX="-195" frameY="-235" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0027" x="1320" y="2132" width="435" height="408" frameX="-207" frameY="-233" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0028" x="1147" y="2544" width="533" height="403" frameX="-180" frameY="-230" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0029" x="645" y="2949" width="614" height="401" frameX="-141" frameY="-226" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0030" x="1259" y="2949" width="645" height="401" frameX="-121" frameY="-221" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0031" x="1680" y="2544" width="615" height="403" frameX="-132" frameY="-215" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0032" x="1755" y="2132" width="534" height="406" frameX="-171" frameY="-209" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0033" x="2282" y="1240" width="437" height="410" frameX="-218" frameY="-204" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0034" x="2282" y="414" width="432" height="414" frameX="-211" frameY="-200" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0035" x="546" y="1711" width="411" height="418" frameX="-217" frameY="-198" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0036" x="1737" y="423" width="433" height="421" frameX="-207" frameY="-198" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0037" x="553" y="1286" width="493" height="425" frameX="-193" frameY="-198" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0038" x="552" y="859" width="529" height="427" frameX="-187" frameY="-200" frameWidth="800" frameHeight="800" />
+<SubTexture name="bibblehead mewhenispin0039" x="1159" y="428" width="571" height="428" frameX="-143" frameY="-202" frameWidth="800" frameHeight="800" />
+</TextureAtlas>

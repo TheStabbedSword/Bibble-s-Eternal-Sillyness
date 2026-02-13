@@ -11,12 +11,16 @@ var menuCamera:FlxCamera = new FlxCamera();
 
 var bg:FlxSprite = new FlxSprite(0, 0);
 var taskbar:FlxSprite = new FlxSprite(0, 0);
+var songFolder:FlxSprite = new FlxSprite(0, 0);
+var folderCloseHitbox:FlxSprite = new FlxSprite(0, 0);
 
 var menuItems:FlxGroup = new FlxGroup();
+
 var options:Array<String> = [
     {name: "Options", icon: "settings"},
     {name: "goon stash", icon: "folder"},
     {name: "Bibble Explorer", icon: "browser"},
+    {name: "Songs", icon: "folder"}
 ];
 
 var browserThing:FlxSprite = new FlxSprite(0, 0);
@@ -139,6 +143,17 @@ function create()
     browserCloseHitbox.visible = false;
     browserCloseHitbox.scrollFactor.set();
 
+    add(songFolder).loadGraphic(Paths.image("game/mainmenu/browserShit"));
+    songFolder.scrollFactor.set();
+    songFolder.screenCenter();
+    songFolder.visible = false;
+
+    add(folderCloseHitbox).makeGraphic(31, 20, 0xFF000000);
+    folderCloseHitbox.setPosition(songFolder.width + 254.5, songFolder.y + 10);
+    folderCloseHitbox.alpha = 0;
+    folderCloseHitbox.visible = false;
+    folderCloseHitbox.scrollFactor.set();
+
     timeTxt = new FlxText(-5, FlxG.height - 32.5, taskbar.width, "time you dumbass", 16);
     timeTxt.setFormat("Arial", 12, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     timeTxt.borderSize = 0.2;
@@ -146,19 +161,15 @@ function create()
     timeTxt.scrollFactor.set();
     add(timeTxt);
 
-    for (i in [taskbar, bg, browserThing, timeTxt])
+    for (i in [taskbar, bg, browserThing, timeTxt, songFolder])
     {
         i.antialiasing = true;
         i.camera = menuCamera;
     }
-
-    trace(getYearString());
 }
 
 function update(elapsed:Float)
 {
-    menuCamera.scroll.set(FlxG.mouse.screenX * 0.15, FlxG.mouse.screenY * 0.15);
-
     #if MOD_SUPPORT
     if (controls.SWITCHMOD) openSubState(new ModSwitchMenu());
     #end
@@ -190,6 +201,7 @@ function update(elapsed:Float)
                     case 0: FlxG.switchState(new OptionsMenu());
                     case 1: FlxG.switchState(new ModState("Gallery"));
                     case 2: openUpBrowser();
+                    case 3: toggleFolder();
                 }
             }
             lastClickTime = now;
@@ -205,9 +217,24 @@ function update(elapsed:Float)
                 openUpBrowser();
             }
         }
+
+        if (FlxG.mouse.overlaps(folderCloseHitbox))
+        {
+            if (folderCloseHitbox.visible)
+            {
+                toggleFolder();
+            }
+        }
     }
 
     timeTxt.text = getTimeString() + "\n" + getYearString();
+}
+
+function toggleFolder()
+{
+    songFolder.visible = !songFolder.visible;
+    folderCloseHitbox.visible = songFolder.visible;
+    songFolderItems.visible = songFolder.visible;
 }
 
 function openUpBrowser()
