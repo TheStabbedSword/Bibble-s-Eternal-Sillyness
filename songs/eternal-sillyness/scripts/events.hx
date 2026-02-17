@@ -33,6 +33,8 @@ var limitAdder:Float = 1400;
 var notePoses:Array<Float> = [];
 var pi:Float = 3.41;
 
+var choice:String = (Options.downscroll ? "down" : "up");
+
 function postCreate()
 {
 	FlxG.cameras.insert(dadNotesCam, 1, false).bgColor = FlxColor.TRANSPARENT;
@@ -235,6 +237,8 @@ function onDadHit(event)
             camGame.shake(0.005, 0.05);
         }
     }
+
+    switchSides();
 }
 
 public function centerCamera()
@@ -264,4 +268,15 @@ function onPostStrumCreation(event) if (event.player == 0) {
 	event.strum.angle = -90;
 	event.strum.setPosition(dad.x + event.strum.y + daX, -event.strum.x + daY);
 	event.strum.scrollFactor.set(1, 1);
+}
+
+function switchSides()
+{
+    for (i in playerStrums.members)
+    {
+        switch (choice)
+        {
+            
+        }
+    }
 }

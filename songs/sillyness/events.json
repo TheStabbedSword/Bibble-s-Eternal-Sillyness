@@ -1,0 +1,33 @@
+{
+	"events": [
+		{
+			"params": [
+				1
+			],
+			"time": 66000,
+			"name": "Camera Movement"
+		},
+		{
+			"params": [
+				0,
+				true,
+				128,
+				"quad",
+				"InOut"
+			],
+			"time": 72000,
+			"name": "Camera Movement"
+		},
+		{
+			"params": [
+				1,
+				true,
+				64,
+				"quad",
+				"InOut"
+			],
+			"name": "Camera Movement",
+			"time": 84000
+		}
+	]
+}

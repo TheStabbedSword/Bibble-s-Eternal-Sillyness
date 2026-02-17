@@ -1,0 +1,18 @@
+{
+	"events": [
+		{
+			"params": [
+				true,
+				1.1,
+				"camGame",
+				4,
+				"back",
+				"InOut",
+				"direct",
+				true
+			],
+			"time": 566.037735849057,
+			"name": "Camera Zoom"
+		}
+	]
+}

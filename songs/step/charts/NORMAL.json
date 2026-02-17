@@ -6,21 +6,23 @@
 	"chartVersion": "1.6.0",
 	"strumLines": [
 		{
-			"keyCount": 4,
-			"strumScale": 1,
-			"position": "boyfriend",
-			"notes": [],
-			"characters": [
-				"bf"
-			],
-			"type": 1,
 			"scrollSpeed": 2.5,
+			"keyCount": 4,
+			"notes": [],
 			"visible": true,
+			"strumSpacing": 1,
 			"strumPos": [
 				0,
 				50
 			],
-			"strumLinePos": 0.75
+			"position": "boyfriend",
+			"strumScale": 1,
+			"vocalsSuffix": "",
+			"strumLinePos": 0.5,
+			"type": 1,
+			"characters": [
+				"bf"
+			]
 		}
 	],
 	"noteTypes": []
