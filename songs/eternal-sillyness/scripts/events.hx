@@ -33,8 +33,6 @@ var limitAdder:Float = 1400;
 var notePoses:Array<Float> = [];
 var pi:Float = 3.41;
 
-var choice:String = (Options.downscroll ? "down" : "up");
-
 function postCreate()
 {
 	FlxG.cameras.insert(dadNotesCam, 1, false).bgColor = FlxColor.TRANSPARENT;
@@ -48,6 +46,12 @@ function postCreate()
 	    remove(strumLines);
 	    insert(gfIndex > -1 ? gfIndex : members.indexOf(dad), strumLines);
     }
+
+    playerStrums.forEach(function(spr)
+    {
+        trace(spr.scale.x);
+        trace(spr.scale.y);
+    });
 
 	camZooming = true;
     centerCamera();
@@ -159,7 +163,44 @@ function stepHit(curStep)
             mad = true;
             eternalModchart = EternalSillyModcharts.Jersey;
 
+            var previousZoom = defaultCamZoom;
+
+            FlxTween.tween(camHUD, {alpha: 0}, (Conductor.stepCrochet / 1000) * 16);
+            FlxTween.num(previousZoom, previousZoom + 0.3, (Conductor.stepCrochet / 1000) *  240, {ease: FlxEase.quartOut}, val -> defaultCamZoom = val);
+
             camGame.flash(0xFFFFFFFF);
+        case 2776:
+            var previousZoom = defaultCamZoom;
+
+            FlxTween.tween(camHUD, {alpha: 1}, (Conductor.stepCrochet / 1000) * 2);
+            FlxTween.num(previousZoom, previousZoom - 0.3, (Conductor.stepCrochet / 1000) *  4, {ease: FlxEase.quartOut}, val -> defaultCamZoom = val);
+            subtitle.text = "SHUT";
+        case 2778:
+            subtitle.text = "SHUT YOUR";
+        case 2780:
+            subtitle.text = "SHUT YOUR BEAN";
+        case 2782:
+            subtitle.text = "SHUT YOUR BEANIE";
+        case 2784:
+            subtitle.text = "";
+
+            camGame.alpha = 0;
+            camHUD.alpha = 0;
+            camHUD.flash(0xFFFFFFFF);
+
+            centerCamera();
+        case 2880 | 2884 | 2888 | 2892:
+            camGame.alpha += 0.25;
+            camHUD.alpha += 0.25;
+        case 2904:
+            defaultCamZoom += 0.2;
+            subtitle.text = "I";
+        case 2908:
+            subtitle.text = "I AM";
+            subtitle.color = 0xFFFF0000;
+        case 2912:
+            subtitle.text = "";
+            camHUD.alpha = 0;
     }
 }
 
@@ -197,6 +238,16 @@ function postUpdate(elapsed:Float)
             {
                 spr.x += Math.sin(elapsedtime * 16);
                 spr.y += Math.cos((elapsedtime * 4) * (spr.ID + 1)) * 0.25;
+
+				spr.scale.x = Math.abs(Math.sin(elapsedtime - 5) * ((spr.ID % 2) == 0 ? 1 : -1)) / 4;
+
+				spr.scale.y = Math.abs((Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1)) / 2);
+
+				spr.scale.x += 0.2;
+				spr.scale.y += 0.2;
+
+				spr.scale.x *= 1.5;
+				spr.scale.y *= 1.5;
             });
 
             cpuStrums.forEach(function(spr)
@@ -206,15 +257,15 @@ function postUpdate(elapsed:Float)
             });
         case EternalSillyModcharts.None:
             camHUD.y = 0;
+
+            playerStrums.forEach(function(spr)
+            {
+                FlxTween.tween(spr.scale, {x: 0.695945945945946, y: 0.695945945945946}, (Conductor.stepCrochet / 1000) * 16, {ease: FlxEase.quartOut});
+            });
         case EternalSillyModcharts.Jersey:
             playerStrums.forEach(function(spr)
             {
                 spr.x += Math.sin(elapsedtime * 16);
-            });
-
-            cpuStrums.forEach(function(spr)
-            {
-                spr.x -= Math.sin(elapsedtime * 16);
             });
     }
 
@@ -268,15 +319,4 @@ function onPostStrumCreation(event) if (event.player == 0) {
 	event.strum.angle = -90;
 	event.strum.setPosition(dad.x + event.strum.y + daX, -event.strum.x + daY);
 	event.strum.scrollFactor.set(1, 1);
-}
-
-function switchSides()
-{
-    for (i in playerStrums.members)
-    {
-        switch (choice)
-        {
-            
-        }
-    }
 }
