@@ -118,6 +118,9 @@ function stepHit(curStep)
             eternalModchart = EternalSillyModcharts.Beanie;
             changeShit(true);
             defaultCamZoom -= 0.4;
+
+            songNameTxt.text = "I see you " + PlatformUtil.getUserFromDiscord() + "\n" + PlayState.SONG.meta.displayName;
+            songNameTxt.y -= 24;
         case 1912:
             for (i in [camHUD, camGame])
             {
@@ -201,8 +204,10 @@ function stepHit(curStep)
         case 2912:
             subtitle.text = "";
             camHUD.alpha = 0;
+        case 3152:
+            FlxTween.tween(camHUD, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
     }
-}
+}   
 
 function beatHit(curBeat)
 {

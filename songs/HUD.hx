@@ -21,9 +21,14 @@ function postCreate()
     add(songNameTxt);
     songNameTxt.y = (FlxG.height - songNameTxt.height);
 
-    for (i in [subtitle, songNameTxt, scoreTxt, accuracyTxt, missesTxt])
+    for (i in [subtitle, songNameTxt])
     {
         i.cameras = [camHUD];
+        i.antialiasing = true;
+    }
+
+    for (i in [scoreTxt, accuracyTxt, missesTxt])
+    {
         i.antialiasing = true;
         i.font = Paths.font("bibblesaveragehandwriting.ttf");
     }
