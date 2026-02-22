@@ -27,7 +27,7 @@ var goonerrrrr:FlxGroup = new FlxGroup();
 
 function create()
 {
-    add(bg).loadGraphic(Paths.image("game/mainmenu/browserShit"));
+    add(bg).loadGraphic(Paths.image("game/mainmenu/browserShitss"));
     bg.setGraphicSize(FlxG.width, FlxG.height);
     bg.updateHitbox();
     bg.scrollFactor.set();
@@ -87,11 +87,11 @@ function update(elapsed:Float)
             boomed = true;
             boomboomthatshit(curSelected);
 
-            FlxTween.tween(goonerrrrr.members[curSelected], {alpha: 0}, 0.5, {ease: FlxEase.quadOut, onComplete: function()
+            goonerrrrr.members[curSelected].destroy();
+            new FlxTimer().start(1, function(timer:FlxTimer)
             {
-                goonerrrrr.members[curSelected].destroy();
                 boomed = false;
-            }});
+            });
         }
     }
 }
