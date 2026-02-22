@@ -60,17 +60,6 @@ function postCreate()
     colorCorrection.contrast = 30;
     colorCorrection.hue = -10;
     colorCorrection.saturation = -10;
-
-	var keyCount:Int = playerStrums.length;
-    var noteWidth:Float = playerStrums.members[0].width;
-    var totalWidth:Float = (keyCount * noteWidth);
-
-    var startX:Float = (FlxG.width - totalWidth) / 2;
-
-    for (i in 0...keyCount)
-    {
-        playerStrums.members[i].x = startX + (i * noteWidth);
-    }
 }
 
 function stepHit(curStep)

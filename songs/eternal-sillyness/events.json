@@ -116,6 +116,34 @@
 			"params": [
 				0
 			],
+			"time": 156521.739130435,
+			"name": "Camera Movement"
+		},
+		{
+			"params": [
+				1
+			],
+			"time": 161739.130434783,
+			"name": "Camera Movement"
+		},
+		{
+			"params": [
+				0
+			],
+			"time": 166956.52173913,
+			"name": "Camera Movement"
+		},
+		{
+			"params": [
+				1
+			],
+			"time": 172173.913043478,
+			"name": "Camera Movement"
+		},
+		{
+			"params": [
+				0
+			],
 			"time": 180000,
 			"name": "Camera Movement"
 		},

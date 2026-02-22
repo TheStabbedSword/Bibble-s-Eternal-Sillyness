@@ -26,6 +26,8 @@ var options:Array<String> = [
 var browserThing:FlxSprite = new FlxSprite(0, 0);
 var browserCloseHitbox:FlxSprite = new FlxSprite(0, 0);
 
+var eternalSillynessHitbox:FlxSprite = new FlxSprite(0, 0).makeGraphic(623, 69, 0xFFFFFFFF);
+
 var timeTxt:FlxText;
 
 var lastClickTime:Float = 0;
@@ -148,6 +150,12 @@ function create()
     songFolder.screenCenter();
     songFolder.visible = false;
 
+    add(eternalSillynessHitbox).camera = menuCamera;
+    eternalSillynessHitbox.alpha = 0;
+    eternalSillynessHitbox.visible = false;
+    eternalSillynessHitbox.screenCenter();
+    eternalSillynessHitbox.y -= 128;
+
     add(folderCloseHitbox).makeGraphic(31, 20, 0xFF000000);
     folderCloseHitbox.setPosition(songFolder.width + 254.5, songFolder.y + 10);
     folderCloseHitbox.alpha = 0;
@@ -155,8 +163,8 @@ function create()
     folderCloseHitbox.scrollFactor.set();
 
     timeTxt = new FlxText(-5, FlxG.height - 32.5, taskbar.width, "time you dumbass", 16);
-    timeTxt.setFormat("Arial", 12, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-    timeTxt.borderSize = 0.2;
+    timeTxt.setFormat("Arial", 12, FlxColor.WHITE, FlxTextAlign.RIGHT);
+    timeTxt.borderSize = 0;
     timeTxt.antialiasing = true;
     timeTxt.scrollFactor.set();
     add(timeTxt);
@@ -225,6 +233,15 @@ function update(elapsed:Float)
                 toggleFolder();
             }
         }
+
+        if (FlxG.mouse.overlaps(eternalSillynessHitbox))
+        {
+            if (eternalSillynessHitbox.visible)
+            {
+                PlayState.loadSong("eternal-sillyness", "normal");
+                FlxG.switchState(new PlayState());
+            }
+        }
     }
 
     timeTxt.text = getTimeString() + "\n" + getYearString();
@@ -233,8 +250,8 @@ function update(elapsed:Float)
 function toggleFolder()
 {
     songFolder.visible = !songFolder.visible;
+    eternalSillynessHitbox.visible = songFolder.visible;
     folderCloseHitbox.visible = songFolder.visible;
-    songFolderItems.visible = songFolder.visible;
 }
 
 function openUpBrowser()
