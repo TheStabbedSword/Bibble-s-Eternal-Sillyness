@@ -84,7 +84,7 @@ function create()
         // bootup
     }
 
-    add(bg).loadGraphic(Paths.image("game/mainmenu/bg"));
+    add(bg).loadGraphic(Paths.image(FlxG.random.bool(0.1) ? "game/mainmenu/bg so secret" : "game/mainmenu/bg"));
     bg.setGraphicSize(Std.int(Std.int(bg.width * 0.7)));
     bg.updateHitbox();
     bg.screenCenter();
