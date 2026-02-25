@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character x="100" y="400" sprite="StrangeCat" color="#B17431">
+	<anim name="idle" anim="idle"/>
+	<anim name="singDOWN" anim="down" x="25" y="-71"/>
+	<anim name="singRIGHT" anim="right" x="-45" y="-25"/>
+	<anim name="singLEFT" anim="left" x="54" y="-11"/>
+	<anim name="singUP" anim="up" x="-55" y="37"/>
+</character>
