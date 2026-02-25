@@ -1,0 +1,12 @@
+<!DOCTYPE codename-engine-character>
+<character x="37" y="400" icon="bambi" color="#000000">
+	<anim name="idle" anim="bambi idle"/>
+	<anim name="singDOWN" anim="bambi down" y="-28"/>
+	<anim name="singRIGHT" anim="bambi right" x="-34" y="2"/>
+	<anim name="singLEFT" anim="bambi left" x="50" y="-5"/>
+	<anim name="singUP" anim="bambi up" x="30" y="35"/>
+	<anim name="hey" anim="bambi hey" x="-1" y="9"/>
+	<anim name="idiot" anim="bambi idiot" x="-9" y="-1"/>
+	<anim name="singSmash" anim="bambi phone" x="74" y="43"/>
+	<anim name="singThrow" anim="bambi throw" x="30" y="-6"/>
+</character>

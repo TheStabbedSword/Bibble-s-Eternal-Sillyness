@@ -2,6 +2,16 @@
 	"events": [
 		{
 			"params": [
+				0,
+				"hey",
+				true,
+				"NONE"
+			],
+			"time": 0,
+			"name": "Play Animation"
+		},
+		{
+			"params": [
 				2,
 				2,
 				"BEAT",
@@ -71,6 +81,7 @@
 			"name": "BPM Change"
 		}
 	],
+	"codenameChart": true,
 	"strumLines": [
 		{
 			"keyCount": 4,
@@ -2477,7 +2488,7 @@
 				},
 				{
 					"id": 3,
-					"sLen": 570.652173913171,
+					"sLen": 570.6521739132,
 					"time": 168260.869565217,
 					"type": 0
 				},
@@ -2501,13 +2512,13 @@
 				},
 				{
 					"id": 2,
-					"sLen": 81.5217391303158,
+					"sLen": 81.5217391302867,
 					"time": 169728.260869565,
 					"type": 0
 				},
 				{
 					"id": 1,
-					"sLen": 570.652173912968,
+					"sLen": 570.652173912909,
 					"time": 169891.304347826,
 					"type": 0
 				},
@@ -2537,7 +2548,7 @@
 				},
 				{
 					"id": 0,
-					"sLen": 244.56521739118,
+					"sLen": 244.565217391151,
 					"time": 171521.739130435,
 					"type": 0
 				},
@@ -3172,25 +3183,23 @@
 					"type": 0
 				}
 			],
-			"position": "dad",
-			"strumScale": 1,
-			"strumSpacing": 1,
 			"visible": true,
-			"type": 0,
-			"characters": [
-				"dad"
-			],
+			"strumSpacing": 1,
 			"strumPos": [
 				0,
 				50
 			],
+			"position": "dad",
+			"strumScale": 1,
 			"vocalsSuffix": "",
-			"strumLinePos": 0.25
+			"strumLinePos": 0.25,
+			"type": 0,
+			"characters": [
+				"babble"
+			]
 		},
 		{
 			"keyCount": 4,
-			"strumScale": 1,
-			"position": "boyfriend",
 			"notes": [
 				{
 					"id": 3,
@@ -5168,7 +5177,7 @@
 				},
 				{
 					"id": 3,
-					"sLen": 244.56521739118,
+					"sLen": 244.565217391151,
 					"time": 171521.739130435,
 					"type": 0
 				},
@@ -5198,7 +5207,7 @@
 				},
 				{
 					"id": 3,
-					"sLen": 570.652173912968,
+					"sLen": 570.652173912909,
 					"time": 173478.260869565,
 					"type": 0
 				},
@@ -5983,21 +5992,22 @@
 					"type": 0
 				}
 			],
+			"position": "boyfriend",
+			"strumScale": 1,
+			"strumSpacing": 1,
+			"visible": true,
+			"type": 1,
 			"characters": [
 				"bf"
 			],
-			"type": 1,
-			"visible": true,
-			"strumSpacing": 1,
 			"strumPos": [
 				0,
 				50
 			],
-			"strumLinePos": 0.5,
-			"vocalsSuffix": ""
+			"vocalsSuffix": "",
+			"strumLinePos": 0.5
 		}
 	],
-	"codenameChart": true,
 	"scrollSpeed": 2.8,
 	"chartVersion": "1.6.0",
 	"stage": "stage",
