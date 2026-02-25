@@ -14,6 +14,12 @@ var taskbar:FlxSprite = new FlxSprite(0, 0);
 var songFolder:FlxSprite = new FlxSprite(0, 0);
 var folderCloseHitbox:FlxSprite = new FlxSprite(0, 0);
 
+var btj:FunkinSprite = new FunkinSprite(0, 0, Paths.image("game/mainmenu/BTJ walking"));
+var btjIsMoving:Bool = false;
+var pressedB = false;
+var pressedT = false;
+var pressedJ = false;
+
 var menuItems:FlxGroup = new FlxGroup();
 
 var options:Array<String> = [
@@ -169,6 +175,14 @@ function create()
     timeTxt.scrollFactor.set();
     add(timeTxt);
 
+    add(btj).camera = menuCamera;
+    btj.frames = Paths.getFrames("game/mainmenu/BTJ walking");
+    btj.addAnim("walkacross", "BTJ WALKING NOW OR ELSE YOUR RAMADAMNINGNINGNUING", 24, true);
+    btj.setGraphicSize(Std.int(btj.width) * 0.5);
+    btj.screenCenter();
+    btj.setPosition(-200, (FlxG.height - btj.height) + 12.5);
+    btj.playAnim("walkacross");
+
     for (i in [taskbar, bg, browserThing, timeTxt, songFolder])
     {
         i.antialiasing = true;
@@ -242,6 +256,42 @@ function update(elapsed:Float)
                 FlxG.switchState(new PlayState());
             }
         }
+
+        if (FlxG.mouse.overlaps(btj))
+        {
+            if (btjIsMoving)
+            {
+                PlayState.loadSong("step", "normal");
+                FlxG.switchState(new PlayState());
+            }
+        }
+    }
+
+    if (FlxG.keys.justPressed.B && !pressedB)
+    {
+        pressedB = true;
+        trace("pressed b");
+    }
+
+    if (FlxG.keys.justPressed.T && pressedB && !pressedT)
+    {
+        pressedT = true;
+        trace("pressed t");
+    }
+
+    if (FlxG.keys.justPressed.J && pressedB && pressedT && !pressedJ)
+    {
+        pressedJ = true;
+        trace("pressed j");
+    }
+
+    if (pressedB && pressedT && pressedJ)
+    {
+        sendInTheBlamer();
+
+        pressedB = false;
+        pressedT = false;
+        pressedJ = false;
     }
 
     timeTxt.text = getTimeString() + "\n" + getYearString();
@@ -270,4 +320,12 @@ function getYearString():String
 {
     var d = Date.now();
     return d.getMonth() + "/" + d.getDay() + "/" + d.getFullYear();
+}
+
+function sendInTheBlamer()
+{
+    btjIsMoving = true;
+
+    btj.x = -200;
+    FlxTween.tween(btj, {x: FlxG.width}, 5);
 }
