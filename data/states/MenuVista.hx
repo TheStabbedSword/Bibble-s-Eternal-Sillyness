@@ -261,7 +261,7 @@ function update(elapsed:Float)
         {
             if (btjIsMoving)
             {
-                PlayState.loadSong("step", "normal");
+                PlayState.loadSong("blame-them", "jews");
                 FlxG.switchState(new PlayState());
             }
         }
