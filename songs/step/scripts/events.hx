@@ -1,5 +1,13 @@
 var bobbingIt:Bool = false;
 
+function postCreate()
+{
+    for (i in [healthBarBG, healthBar, iconP1, iconP2])
+    {
+        i.visible = false;
+    }
+}
+
 function stepHit(curStep)
 {
     switch (curStep)
