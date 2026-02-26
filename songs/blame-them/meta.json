@@ -1,5 +1,7 @@
 {
-	"customValues": {},
+	"customValues": {
+		"stickerPack": "jews"
+	},
 	"color": "#000000",
 	"opponentModeAllowed": false,
 	"icon": "strange-cat",
