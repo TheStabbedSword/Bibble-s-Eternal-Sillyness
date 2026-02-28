@@ -1,6 +1,7 @@
 import flixel.text.FlxTextBorderStyle;
 import flixel.FlxObject;
 import flixel.text.FlxTextAlign;
+import funkin.editors.ui.UIState;
 
 var bg:FlxSprite = new FlxSprite(0, 0);
 var boomboom:FunkinSprite = new FunkinSprite(0, 0);
@@ -22,6 +23,7 @@ var goonFolderShit = [
     "Screenshot_2026-02-15_014930",
     "Screenshot_2026-02-15_014940"
 ];
+var tordsleft:Int;
 
 var goonerrrrr:FlxGroup = new FlxGroup();
 
@@ -56,6 +58,9 @@ function create()
         goonerrrrr.add(goon);
     }
 
+    tordsleft = goonerrrrr.length;
+    trace(tordsleft);
+
     FlxG.camera.follow(camFollow, null, 0.06);
     FlxG.mouse.visible = true;
     changeItem(curSelected);
@@ -82,17 +87,28 @@ function update(elapsed:Float)
 
     if (FlxG.mouse.pressed)
     {
-        if (FlxG.mouse.overlaps(goonerrrrr.members[curSelected]) && !boomed)
+        if (FlxG.mouse.overlaps(goonerrrrr.members[curSelected]))
         {
-            boomed = true;
-            boomboomthatshit(curSelected);
-
-            goonerrrrr.members[curSelected].destroy();
-            new FlxTimer().start(1, function(timer:FlxTimer)
+            if (!boomed)
             {
-                boomed = false;
-            });
+                boomed = true;
+                boomboomthatshit(curSelected);
+
+                goonerrrrr.members[curSelected].destroy();
+                tordsleft -= 1;
+                trace(tordsleft);
+                
+                new FlxTimer().start(1, function(timer:FlxTimer)
+                {
+                    boomed = false;
+                });
+            }
         }
+    }
+
+    if (tordsleft == 0)
+    {
+        FlxG.switchState(new UIState(true, 'TalkingTord'));
     }
 }
 

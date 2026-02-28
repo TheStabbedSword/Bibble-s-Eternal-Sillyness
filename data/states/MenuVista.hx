@@ -3,6 +3,7 @@ import funkin.menus.ModSwitchMenu;
 import flixel.text.FlxTextBorderStyle;
 import flixel.text.FlxTextAlign;
 import PlatformUtil;
+import funkin.editors.ui.UIState;
 import Date;
 import funkin.options.OptionsMenu;
 
