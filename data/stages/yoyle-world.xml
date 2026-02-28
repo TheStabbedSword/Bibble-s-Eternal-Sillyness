@@ -1,0 +1,7 @@
+<!DOCTYPE codename-engine-stage>
+<stage folder="backgrounds/oppositiontypeshi/" name="yoyle-world" zoom="0.5">
+	<sprite x="-594" scroll="0.2" sprite="bg" y="-197" type="none" scale="1.6" name="bg"/>
+	<girlfriend/>
+	<dad/>
+	<boyfriend/>
+</stage>
