@@ -93,17 +93,30 @@ function update(elapsed:Float)
         var thingSent = typeText.label.text;
         var chosenthing = randomResponses[FlxG.random.float(0, randomResponses.length)];
 
-        if (thingSent.toLowerCase() == "are you evil")
+        switch (thingSent.toLowerCase())
         {
-            FlxG.sound.music.fadeOut(0.1, 0);
-            FlxG.sound.play(Paths.music("tordshucky"), 2);
-            jumpscare.visible = true;
-            jumpscare.play();
-        } else {
-            tord.loadGraphic(Paths.image("game/talkingtord/" + chosenthing));
-            new FlxTimer().start(1, ()->{ tord.loadGraphic(Paths.image("game/talkingtord/idle")); });
-            FlxG.sound.play(Paths.sound("talkingtord/" + chosenthing), 2);
-            trace(chosenthing);
+            case "are u evil" | "are you evil" | "are you evil?" | "are u evil?" | "shucks" | "aw shucks":
+                FlxG.sound.music.fadeOut(0.1, 0);
+                FlxG.sound.play(Paths.music("tordshucky"), 2);
+                jumpscare.visible = true;
+                jumpscare.play();
+            case "be evil":
+                FlxG.cameras.flash();
+                tord.color = 0xFFFF0000;
+            case "its the jews fault":
+                FlxG.sound.play(Paths.sound("btjdie"), 2);
+
+                var btj:FunkinSprite = new FunkinSprite(-500,0,Paths.image("game/talkingtord/btj"));
+                btj.setGraphicSize(Std.int(btj.width * 2));
+                btj.screenCenter(FlxAxes.Y);
+                add(btj);
+                FlxTween.tween(btj, {x: FlxG.width + 100, angle: -360}, 0.69);
+                new FlxTimer().start(0.69, ()->{ FlxG.cameras.shake(0.005, 0.2); });
+            default:
+                tord.loadGraphic(Paths.image("game/talkingtord/" + chosenthing));
+                new FlxTimer().start(1, ()->{ tord.loadGraphic(Paths.image("game/talkingtord/idle")); });
+                FlxG.sound.play(Paths.sound("talkingtord/" + chosenthing), 2);
+                trace(chosenthing);
         }
     }
 
