@@ -61,6 +61,7 @@ function create()
     tord.addAnim("no", "TalkingTord no", 24, true);
     tord.addAnim("tordineedthis", "TalkingTord tordineedthis", 12, false);
     tord.playAnim("idle");
+    tord.antialiasing = true;
     tord.x += 100;
     tord.y -= 150;
 
