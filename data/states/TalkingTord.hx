@@ -15,6 +15,7 @@ import flixel.text.FlxTextFormatMarkerPair;
 import flixel.text.FlxTextFormat;
 import flixel.text.FlxTextBorderStyle;
 import PlatformUtil;
+import flixel.FlxG;
 
 // !! THE GOAT HIMSELF 
 var tord:FunkinSprite = new FunkinSprite(0, 0, Paths.image("game/talkingtord/idle"));
@@ -32,7 +33,7 @@ var randomResponses = [
     "eugh",
     "evil laugh"
 ];
-var bg:FlxSprite = new FlxSprite(0, 0);
+var bg:FlxSprite = new FlxSprite(0, 0); 
 
 function create()
 {
@@ -69,13 +70,12 @@ function create()
     add(escapelol);
     escapelol.y = FlxG.height - escapelol.height;
 
-    add(jumpscare).load(Assets.getPath(Paths.file('videos/eviljumpscare.mkv')));
-    jumpscare.scale.set(0.68,0.68);
+    add(jumpscare).load(Assets.getPath(Paths.file('videos/eviljumpscare.mkv')), [':no-audio']);
     jumpscare.visible = false;
     jumpscare.screenCenter(FlxAxes.XY);
     jumpscare.scrollFactor.set();
     jumpscare.bitmap.onEndReached.add(function() {
-        PlatformUtil.sendFakeError("you just got tord'd");
+        PlatformUtil.sendFakeError("yes i am evil\n-Evil Tord");
         Sys.exit(0);
     });
 
@@ -95,7 +95,8 @@ function update(elapsed:Float)
 
         if (thingSent.toLowerCase() == "are you evil")
         {
-            FlxG.sound.music.fadeOut(1, 0);
+            FlxG.sound.music.fadeOut(0.1, 0);
+            FlxG.sound.play(Paths.music("tordshucky"), 2);
             jumpscare.visible = true;
             jumpscare.play();
         } else {
