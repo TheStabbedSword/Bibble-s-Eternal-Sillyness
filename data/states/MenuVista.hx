@@ -39,6 +39,8 @@ var timeTxt:FlxText;
 
 var lastClickTime:Float = 0;
 
+var elapsedtime:Float = 0.00;
+
 function create()
 {
     FlxG.cameras.insert(menuCamera, 1, false).bgColor = FlxColor.TRANSPARENT;
@@ -193,6 +195,8 @@ function create()
 
 function update(elapsed:Float)
 {
+    elapsedtime += elapsed;
+
     #if MOD_SUPPORT
     if (controls.SWITCHMOD) openSubState(new ModSwitchMenu());
     #end

@@ -18,8 +18,9 @@ import PlatformUtil;
 import flixel.FlxG;
 
 // !! THE GOAT HIMSELF 
-var tord:FunkinSprite = new FunkinSprite(0, 0, Paths.image("game/talkingtord/idle"));
+var tord:FunkinSprite = new FunkinSprite(0, 0, Paths.image("game/talkingtord/TalkingTord"));
 var jumpscare:FlxVideoSprite = new FlxVideoSprite();
+var funny:CustomShader = new CustomShader("SineWarpGradient");
 // !! THE GOAT HIMSELF 
 
 var elapsedtime:Float = 0.00;
@@ -48,9 +49,19 @@ function create()
     bg.updateHitbox();
     bg.screenCenter();
     bg.scrollFactor.set(0.15, 0.15);
+    bg.shader = funny;
     add(blackScreen);
 
     add(tord).screenCenter(FlxAxes.XY);
+    tord.frames = Paths.getFrames("game/talkingtord/TalkingTord");
+    tord.addAnim("idle", "TalkingTord idle", 24, true);
+    tord.addAnim("evil laugh", "TalkingTord evil laugh", 24, true);
+    tord.addAnim("eugh", "TalkingTord eugh", 24, true);
+    tord.addAnim("yes", "TalkingTord yes", 24, true);
+    tord.addAnim("no", "TalkingTord no", 24, true);
+    tord.addAnim("tordineedthis", "TalkingTord tordineedthis", 12, false);
+    tord.playAnim("idle");
+    tord.x += 100;
     tord.y -= 150;
 
     typeText = new UITextBox(100, 0, "", 1080, 32, false, false);
@@ -74,10 +85,7 @@ function create()
     jumpscare.visible = false;
     jumpscare.screenCenter(FlxAxes.XY);
     jumpscare.scrollFactor.set();
-    jumpscare.bitmap.onEndReached.add(function() {
-        PlatformUtil.sendFakeError("yes i am evil\n-Evil Tord");
-        Sys.exit(0);
-    });
+    jumpscare.play();
 
     FlxG.mouse.visible = true;
 }
@@ -97,9 +105,14 @@ function update(elapsed:Float)
         {
             case "are u evil" | "are you evil" | "are you evil?" | "are u evil?" | "shucks" | "aw shucks":
                 FlxG.sound.music.fadeOut(0.1, 0);
+                jumpscare.stop();
                 FlxG.sound.play(Paths.music("tordshucky"), 2);
                 jumpscare.visible = true;
                 jumpscare.play();
+                jumpscare.bitmap.onEndReached.add(function() {
+                    PlatformUtil.sendFakeError("yes i am evil\n-Evil Tord");
+                    Sys.exit(0);
+                });
             case "be evil":
                 FlxG.cameras.flash();
                 tord.color = 0xFFFF0000;
@@ -112,11 +125,12 @@ function update(elapsed:Float)
                 add(btj);
                 FlxTween.tween(btj, {x: FlxG.width + 100, angle: -360}, 0.69);
                 new FlxTimer().start(0.69, ()->{ FlxG.cameras.shake(0.005, 0.2); });
+            case "pls tord i need this":
+                tord.playAnim("tordineedthis");
             default:
-                tord.loadGraphic(Paths.image("game/talkingtord/" + chosenthing));
-                new FlxTimer().start(1, ()->{ tord.loadGraphic(Paths.image("game/talkingtord/idle")); });
+                tord.playAnim(chosenthing);
+                new FlxTimer().start(1, ()->{ tord.playAnim("idle"); });
                 FlxG.sound.play(Paths.sound("talkingtord/" + chosenthing), 2);
-                trace(chosenthing);
         }
     }
 
@@ -126,4 +140,5 @@ function update(elapsed:Float)
     }
 
     jumpscare.screenCenter(FlxAxes.XY);
+    funny.uTime = (elapsedtime);
 }
