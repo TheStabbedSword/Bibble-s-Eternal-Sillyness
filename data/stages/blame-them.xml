@@ -1,0 +1,7 @@
+<!DOCTYPE codename-engine-stage>
+<stage folder="backgrounds/blamethem/" name="blame-them" zoom="0.5">
+	<sprite x="567" scroll="0" sprite="HallwayOfBlame" y="281" alpha="0" scalex="20" scaley="10" name="hallway"/>
+	<girlfriend/>
+	<dad/>
+	<boyfriend/>
+</stage>

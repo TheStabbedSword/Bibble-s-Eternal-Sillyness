@@ -1,1 +1,18 @@
-{"events":[{"params":[0],"time":1454.54545454545,"name":"Camera Movement"},{"params":[1],"time":7272.72727272727,"name":"Camera Movement"}]}
+{
+	"events": [
+		{
+			"params": [
+				0
+			],
+			"time": 1454.54545454545,
+			"name": "Camera Movement"
+		},
+		{
+			"params": [
+				1
+			],
+			"time": 7272.72727272727,
+			"name": "Camera Movement"
+		}
+	]
+}
